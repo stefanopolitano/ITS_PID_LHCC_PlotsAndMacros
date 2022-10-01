@@ -1,4 +1,5 @@
 beta_MC: '../inputs/TH2_beta_vs_p_MC_PESI.root'
+armenteros: '../inputs/test_v0_builder_520143_armenteros.root'
 
 outdir: '../plots/'
 outformat: ['pdf']

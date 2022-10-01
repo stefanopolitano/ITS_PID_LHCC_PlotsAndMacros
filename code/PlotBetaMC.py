@@ -15,20 +15,41 @@ gStyle.SetPalette(53)
 with open('input_config.yml', 'r') as ymlCfgFile:
     inputCfg = yaml.load(ymlCfgFile, yaml.FullLoader)
 
-inFile = TFile.Open(inputCfg['beta_MC'])
-hbeta_vs_mc = inFile.Get('scatter_plot')
+inFiles = ['beta_MC', 'armenteros'] #'beta_MC', 'armenteros'
+histoName = {'beta_MC': 'scatter_plot',
+             'armenteros': 'h_th2_arm'}
+axixTitles = {'beta_MC': ';#it{p}_{T} (GeV/#it{c}); #beta (ML)',
+              'armenteros': ';#alpha^{Arm.}; q_{T}^{Arm.}'}
+axixLimits = {'beta_MC': [0, 0, 1., 1.1],
+              'armenteros': [-1, 0., 1, 0.3]}
+latexLabels = {'beta_MC': [0.55, 0.3, 0.24, 0.18], # x is fixed for all, y is variable
+               'armenteros': [0.55, 0.88, 0.84, 0.8]}
 
-cBeta = TCanvas('cBeta', '', 900, 800)
-cBeta.cd().SetLogz()
-hFrame = cBeta.cd().DrawFrame(0, 0., 1., 1.1, ';#it{p}_{T} (GeV/#it{c}); #beta (ML)')
-hFrame.GetYaxis().SetDecimals()
-hFrame.GetXaxis().SetDecimals()
-hbeta_vs_mc.Draw('samecolz')
-#latALICE = LatLabel('ALICE', 0.6, 0.24, 0.04) # wait for approval
-latSystem = LatLabel('Run 3 MC ', 0.55, 0.24, 0.04)
-latSystem = LatLabel('pp, #sqrt{#it{s}} = 13.6 TeV', 0.55, 0.18, 0.04)
-cBeta.Update()
-for outformat in inputCfg["outformat"]:
-    cBeta.SaveAs(f'{inputCfg["outdir"]}/beta_vs_p_MC_011022.{outformat}')
+for infile in inFiles:
+    print('Processing file: ', infile)
+    print(f'File opened, getting histo: {histoName[infile]}')
+    inFile = TFile.Open(inputCfg[infile])
+    hbeta_vs_mc = inFile.Get(f'{histoName[infile]}')
 
-input('Press enter to exit')
+    cBeta = TCanvas('cBeta', '', 900, 800)
+    cBeta.cd().SetLogz()
+    hFrame = cBeta.cd().DrawFrame(axixLimits[infile][0], axixLimits[infile][1],
+                                  axixLimits[infile][2], axixLimits[infile][3],
+                                  axixTitles[infile])
+    hFrame.GetYaxis().SetDecimals()
+    hFrame.GetXaxis().SetDecimals()
+    hFrame.GetZaxis().SetDecimals()
+    hbeta_vs_mc.Draw('samecolz')
+    #latALICE = LatLabel('ALICE', 0.6, 0.24, 0.04) # wait for approval
+    latALICE = LatLabel('This Analyses', latexLabels[infile][0],
+                        latexLabels[infile][1], 0.05)
+    run_label = 'Run 3 MC' if infile == 'beta_MC' else 'Run 3'
+    latSystem = LatLabel(f'{run_label}', latexLabels[infile][0],
+                             latexLabels[infile][2], 0.04)
+    latSystem = LatLabel('pp, #sqrt{#it{s}} = 13.6 TeV', latexLabels[infile][0],
+                         latexLabels[infile][3], 0.04)
+    cBeta.Update()
+    for outformat in inputCfg["outformat"]:
+        cBeta.SaveAs(f'{inputCfg["outdir"]}/{infile}_011022.{outformat}')
+
+    input('Press enter to continue')
