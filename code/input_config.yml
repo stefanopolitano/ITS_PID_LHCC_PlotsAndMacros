@@ -1,0 +1,4 @@
+beta_MC: '../inputs/TH2_beta_vs_p_MC_PESI.root'
+
+outdir: '../plots/'
+outformat: ['pdf']

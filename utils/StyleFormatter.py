@@ -39,6 +39,8 @@ kLHCb_4 = TColor.GetFreeColorIndex()
 cLHCb_4 = TColor(kLHCb_4, 159/255, 7/255, 66/255, 'kLHCb_4', 1.0)
 
 # pylint: disable=too-many-branches, too-many-statements
+
+
 def SetGlobalStyle(**kwargs):
     '''
     Method to set global style.
@@ -634,13 +636,13 @@ def LineAtOne(min, max, linecolor='', linewidth=1):
     lineAtOne.SetLineColor(linecolor)
     return lineAtOne
 
-def LatLabel(textsize=0.055):
+def LatLabel(text, xtext, ytext, textsize=0.055, textfont=42, textcolor=kBlack):
     latLabel = TLatex()
     latLabel.SetNDC()
-    latLabel.SetTextSize(0.055)
-    latLabel.SetTextFont(42)
-    latLabel.SetTextColor(kBlack)
-    return latLabel
+    latLabel.SetTextSize(textsize)
+    latLabel.SetTextFont(textfont)
+    latLabel.SetTextColor(textcolor)
+    latLabel.DrawLatex(xtext, ytext, f'{text}')
 
 # define custom colors to mimic transparency
 kAzureMy = TColor.GetFreeColorIndex()
