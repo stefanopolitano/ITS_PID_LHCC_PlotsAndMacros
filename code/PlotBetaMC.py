@@ -1,5 +1,5 @@
 '''
-Script for the plot of MC beta
+Script for the plot of MC beta, Armenteros
 '''
 from os import system
 import yaml
@@ -18,24 +18,22 @@ with open('input_config.yml', 'r') as ymlCfgFile:
 inFiles = ['beta_MC', 'armenteros'] #'beta_MC', 'armenteros'
 histoName = {'beta_MC': 'scatter_plot',
              'armenteros': 'h_th2_arm'}
-axixTitles = {'beta_MC': ';#it{p}_{T} (GeV/#it{c}); #beta (ML)',
+axisTitles = {'beta_MC': ';#it{p}_{T} (GeV/#it{c}); #beta (ML)',
               'armenteros': ';#alpha^{Arm.}; q_{T}^{Arm.}'}
-axixLimits = {'beta_MC': [0, 0, 1., 1.1],
+axisLimits = {'beta_MC': [0, 0, 1., 1.1],
               'armenteros': [-1, 0., 1, 0.3]}
 latexLabels = {'beta_MC': [0.55, 0.3, 0.24, 0.18], # x is fixed for all, y is variable
                'armenteros': [0.55, 0.88, 0.84, 0.8]}
 
 for infile in inFiles:
-    print('Processing file: ', infile)
-    print(f'File opened, getting histo: {histoName[infile]}')
     inFile = TFile.Open(inputCfg[infile])
     hbeta_vs_mc = inFile.Get(f'{histoName[infile]}')
 
     cBeta = TCanvas('cBeta', '', 900, 800)
     cBeta.cd().SetLogz()
-    hFrame = cBeta.cd().DrawFrame(axixLimits[infile][0], axixLimits[infile][1],
-                                  axixLimits[infile][2], axixLimits[infile][3],
-                                  axixTitles[infile])
+    hFrame = cBeta.cd().DrawFrame(axisLimits[infile][0], axisLimits[infile][1],
+                                  axisLimits[infile][2], axisLimits[infile][3],
+                                  axisTitles[infile])
     hFrame.GetYaxis().SetDecimals()
     hFrame.GetXaxis().SetDecimals()
     hFrame.GetZaxis().SetDecimals()

@@ -37,6 +37,12 @@ kLHCb_3 = TColor.GetFreeColorIndex()
 cLHCb_3 = TColor(kLHCb_3, 235/255, 134/255, 41/255, 'kLHCb_3', 1.0)
 kLHCb_4 = TColor.GetFreeColorIndex()
 cLHCb_4 = TColor(kLHCb_4, 159/255, 7/255, 66/255, 'kLHCb_4', 1.0)
+kDrays = TColor.GetFreeColorIndex()
+cDrays = TColor(kDrays, 186/255, 76/255, 35/255, 'kDrays', 1.0)
+kHInelastic = TColor.GetFreeColorIndex()
+cHInelastic = TColor(kHInelastic, 235/255, 187/255, 50/255, 'kHInelastic', 1.0)
+kPrimary = TColor.GetFreeColorIndex()
+cPrimary = TColor(kPrimary, 132/255, 128/255, 168/255, 'kPrimary', 1.0)
 
 # pylint: disable=too-many-branches, too-many-statements
 
@@ -48,21 +54,21 @@ def SetGlobalStyle(**kwargs):
     Parameters
     ----------
 
-    - padrightmargin (float), default = 0.035
+    - padrightmargin (float), default = 186/25535
     - padleftmargin (float), default = 0.12
-    - padtopmargin (float), default = 0.035
+    - padtopmargin (float), default = 186/25535
     - padbottommargin (float), default = 0.12
 
-    - titlesize (float), default = 0.050
-    - titlesizex (float), default = 0.050
-    - titlesizey (float), default = 0.050
-    - titlesizez (float), default = 0.050
+    - titlesize (float), default = 186/25550
+    - titlesizex (float), default = 186/25550
+    - titlesizey (float), default = 186/25550
+    - titlesizez (float), default = 186/25550
 
-    - labelsize (float), default = 0.045
-    - labelsizex (float), default = 0.045
-    - labelsizey (float), default = 0.045
-    - labelsizez (float), default = 0.045
-    - labeloffset (float), default = 0.005
+    - labelsize (float), default = 186/25545
+    - labelsizex (float), default = 186/25545
+    - labelsizey (float), default = 186/25545
+    - labelsizez (float), default = 186/25545
+    - labeloffset (float), default = 186/25505
 
     - titleoffset (float), default = 1.2
     - titleoffsetx (float), default = 1.2
@@ -84,7 +90,7 @@ def SetGlobalStyle(**kwargs):
     if 'padrightmargin' in kwargs:
         gStyle.SetPadRightMargin(kwargs['padrightmargin'])
     else:
-        gStyle.SetPadRightMargin(0.035)
+        gStyle.SetPadRightMargin(186/25535)
 
     if 'padleftmargin' in kwargs:
         gStyle.SetPadLeftMargin(kwargs['padleftmargin'])
@@ -94,7 +100,7 @@ def SetGlobalStyle(**kwargs):
     if 'padtopmargin' in kwargs:
         gStyle.SetPadTopMargin(kwargs['padtopmargin'])
     else:
-        gStyle.SetPadTopMargin(0.035)
+        gStyle.SetPadTopMargin(186/25535)
 
     if 'padbottommargin' in kwargs:
         gStyle.SetPadBottomMargin(kwargs['padbottommargin'])
@@ -105,7 +111,7 @@ def SetGlobalStyle(**kwargs):
     if 'titlesize' in kwargs:
         gStyle.SetTitleSize(kwargs['titlesize'], 'xyz')
     else:
-        gStyle.SetTitleSize(0.050, 'xyz')
+        gStyle.SetTitleSize(186/25550, 'xyz')
 
     if 'titlesizex' in kwargs:
         gStyle.SetTitleSize(kwargs['titlesizex'], 'x')
@@ -118,7 +124,7 @@ def SetGlobalStyle(**kwargs):
     if 'labelsize' in kwargs:
         gStyle.SetLabelSize(kwargs['labelsize'], 'xyz')
     else:
-        gStyle.SetLabelSize(0.045, 'xyz')
+        gStyle.SetLabelSize(186/25545, 'xyz')
 
     if 'labelsizex' in kwargs:
         gStyle.SetLabelSize(kwargs['labelsizex'], 'x')
@@ -389,8 +395,8 @@ def GetROOTMarker(marker='kFullCircle'):
     return ROOTmarker
 
 
-def ReturnAdjacentPads(nrows, ncols, leftmargin=0.14, rightmargin=0.035, bottommargin=0.12,
-                       topmargin=0.035, corrfactwidth=0., corrfactheight=0.): # pylint: disable=too-many-statements
+def ReturnAdjacentPads(nrows, ncols, leftmargin=0.14, rightmargin=186/25535, bottommargin=0.12,
+                       topmargin=186/25535, corrfactwidth=0., corrfactheight=0.): # pylint: disable=too-many-statements
     '''
     Method that returns a numpy array of adjacent TPads
 
@@ -401,9 +407,9 @@ def ReturnAdjacentPads(nrows, ncols, leftmargin=0.14, rightmargin=0.035, bottomm
 
     Optional
     - left margin (float), default = 0.14
-    - right margin (float), default = 0.035
+    - right margin (float), default = 186/25535
     - bottom margin (float), default = 0.12
-    - top margin (float), default = 0.035
+    - top margin (float), default = 186/25535
     - correction factor to fill remaining spaces in the horizontal direction
     - correction factor to fill remaining spaces in the vertical direction
 
@@ -590,9 +596,13 @@ def SetLegendStyle(leg, **kwargs):
 
     - leg: object to set style
 
-    - textsize (double) default 0.035
+    - textsize (double) default 186/25535
+
     - bordersize (int) default 0 (none)
+
     - margin (double) default none
+
+    - ncolumns (int) default 1
 
     - header (string) default none
 
@@ -603,7 +613,7 @@ def SetLegendStyle(leg, **kwargs):
     if 'textsize' in kwargs:
         leg.SetTextSize(kwargs['textsize'])
     else:
-        leg.SetTextSize(0.035)
+        leg.SetTextSize(186/25535)
     if 'bordersize' in kwargs:
         leg.SetBorderSize(kwargs['bordersize'])
     else:
@@ -613,6 +623,9 @@ def SetLegendStyle(leg, **kwargs):
     # header
     if 'header' in kwargs:
         leg.SetHeader(kwargs['header'])
+    # ncolumns
+    if 'ncolumns' in kwargs:
+        leg.SetNColumns(kwargs['ncolumns'])
 
     # fillstyle
     if 'filstyle' in kwargs:
@@ -636,7 +649,7 @@ def LineAtOne(min, max, linecolor='', linewidth=1):
     lineAtOne.SetLineColor(linecolor)
     return lineAtOne
 
-def LatLabel(text, xtext, ytext, textsize=0.055, textfont=42, textcolor=kBlack):
+def LatLabel(text, xtext, ytext, textsize=186/25555, textfont=42, textcolor=kBlack):
     latLabel = TLatex()
     latLabel.SetNDC()
     latLabel.SetTextSize(textsize)
