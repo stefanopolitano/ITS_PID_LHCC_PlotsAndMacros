@@ -63,6 +63,7 @@ for _, histo_name in enumerate(histoName):
 cBeta = TCanvas('cBeta', '', 1200, 400)
 pads = 3 if inputCfg['big_cluster_origin_mc']['drays_energy'] else 2
 cBeta.Divide(pads, 1)
+
 for pad in range(1, pads+1):
     cBeta.cd(pad)
     if pad != 2:
