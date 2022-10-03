@@ -54,8 +54,9 @@ for _, histo_name in enumerate(histoName):
                    fillcolor=colors[histo_name],
                    fillstyle=1001,
                    fillalpha=0.3,
+                   linewidth=1,
                    linecolor=colors[histo_name],
-                   markerstyle=20, markersize=1.)
+                   markerstyle=20, markersize=0.5)
     legend.AddEntry(histos[-1], labels[histo_name], 'fpl')
     histos_ratio.append(histos[-1].Clone(f'{histo_name}_ratio'))
     histos_ratio[-1].Divide(histos[0])
@@ -82,7 +83,7 @@ for pad in range(1, pads+1):
                 histo.Draw('histesame')
         LatLabel('This Analyses', 0.25, 0.85, 0.05)
         LatLabel('Run 3 MC', 0.25, 0.8, 0.05)
-        LatLabel('pp, #sqrt{#it{s}} = 13.6 TeV', 0.25, 0.75, 0.05)
+        LatLabel('pp, #sqrt{#it{s}} = 900 GeV', 0.25, 0.75, 0.05)
         legend.Draw()
     if pad == 2:
         for iratio, historatio in enumerate(histos_ratio):
@@ -101,12 +102,12 @@ for pad in range(1, pads+1):
                        linecolor=kAzureCool,
                        fillcolor=kAzureCool,
                        fillalpha=0.3,
-                       linewidth=2)
+                       linewidth=1)
         SetObjectStyle(hEtotal, markercolor=kDplusPrompt,
                        linecolor=kDplusPrompt,
                        fillcolor=kDplusPrompt,
                        fillalpha=0.3,
-                       linewidth=2)
+                       linewidth=1)
         hEkin.Draw('histsame')
         hEtotal.Draw('histsame')
         legDelta = TLegend(0.2, 0.7, 0.6, 0.9)
