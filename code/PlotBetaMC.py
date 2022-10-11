@@ -8,7 +8,9 @@ from ROOT import TFile, TLatex, TCanvas, gStyle, TGraphAsymmErrors, TLegend, TH1
 sys.path.append('..')
 from utils.StyleFormatter import SetGlobalStyle, SetObjectStyle, SetXsystForLogScale, LatLabel
 
-SetGlobalStyle(padbottommargin=0.14, padleftmargin=0.15, padrightmargin=0.15, padtopmargin=0.05, titleoffsety=1.4, maxdigits=2, palette=53)
+SetGlobalStyle(padbottommargin=0.14, padleftmargin=0.15, padrightmargin=0.15,
+               padtopmargin=0.05, titleoffsety=1.4, maxdigits=2, palette=53,
+               titlesizex=0.05, titlesizey=0.05, labelsize=0.03)
 
 gStyle.SetPalette(53)
 
@@ -18,7 +20,7 @@ with open('input_config.yml', 'r') as ymlCfgFile:
 inFiles = ['beta_MC', 'armenteros'] #'beta_MC', 'armenteros'
 histoName = {'beta_MC': 'scatter_plot',
              'armenteros': 'h_th2_arm'}
-axisTitles = {'beta_MC': ';#it{p}_{T} (GeV/#it{c}); #beta (ML)',
+axisTitles = {'beta_MC': ';#it{p} (GeV/#it{c}); #beta (ML)',
               'armenteros': ';#alpha^{Arm.}; q_{T}^{Arm.}'}
 axisLimits = {'beta_MC': [0, 0, 1., 1.1],
               'armenteros': [-1, 0., 1, 0.3]}
@@ -44,7 +46,7 @@ for infile in inFiles:
     run_label = 'Run 3 MC' if infile == 'beta_MC' else 'Run 3'
     latSystem = LatLabel(f'{run_label}', latexLabels[infile][0],
                              latexLabels[infile][2], 0.04)
-    latSystem = LatLabel('pp, #sqrt{#it{s}} = 13.6 TeV', latexLabels[infile][0],
+    latSystem = LatLabel('pp, #sqrt{#it{s}} = 900 GeV', latexLabels[infile][0],
                          latexLabels[infile][3], 0.04)
     cBeta.Update()
     for outformat in inputCfg["outformat"]:
