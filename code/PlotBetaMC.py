@@ -1,5 +1,5 @@
 '''
-Script for the plot of MC beta, Armenteros
+Script for the plot of MC beta, Armenteros, ITS-TPC data from first plenary 
 '''
 from os import system
 import yaml
@@ -17,15 +17,21 @@ gStyle.SetPalette(53)
 with open('input_config.yml', 'r') as ymlCfgFile:
     inputCfg = yaml.load(ymlCfgFile, yaml.FullLoader)
 
-inFiles = ['beta_MC', 'armenteros'] #'beta_MC', 'armenteros'
+inFiles = ['beta_MC',
+           'armenteros',
+           'beta_data_plenary'] #'beta_MC', 'armenteros', 'beta_data_plenary'
 histoName = {'beta_MC': 'scatter_plot',
-             'armenteros': 'h_th2_arm'}
+             'armenteros': 'h_th2_arm',
+             'beta_data_plenary': 'hBgVsPReg'}
 axisTitles = {'beta_MC': ';#it{p} (GeV/#it{c}); #beta (ML)',
-              'armenteros': ';#alpha^{Arm.}; q_{T}^{Arm.}'}
+              'armenteros': ';#alpha^{Arm.}; q_{T}^{Arm.}',
+              'beta_data_plenary': ';#it{p} (GeV/#it{c}); #beta (ML)'}
 axisLimits = {'beta_MC': [0, 0, 1., 1.1],
-              'armenteros': [-1, 0., 1, 0.3]}
+              'armenteros': [-1, 0., 1, 0.3],
+              'beta_data_plenary': [0., 0, 1., 1.1]}
 latexLabels = {'beta_MC': [0.55, 0.3, 0.24, 0.18], # x is fixed for all, y is variable
-               'armenteros': [0.55, 0.88, 0.84, 0.8]}
+               'armenteros': [0.55, 0.88, 0.84, 0.8],
+               'beta_data_plenary': [0.55, 0.3, 0.24, 0.18]}
 
 for infile in inFiles:
     inFile = TFile.Open(inputCfg[infile])

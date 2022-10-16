@@ -1,3 +1,4 @@
+beta_data_plenary: '../inputs/RegoutFile_betaflat.root'
 beta_MC: '../inputs/TH2_beta_vs_p_MC_PESI.root'
 armenteros: '../inputs/test_v0_builder_520143_armenteros.root'
 big_cluster_origin_mc:
