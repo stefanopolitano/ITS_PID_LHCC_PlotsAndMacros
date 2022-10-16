@@ -5,5 +5,7 @@ big_cluster_origin_mc:
   drays_energy: True # plot d-rays energy spectrum
   drays_input: '../inputs/MCOriginStudy0208_EkinFix.root'
 
+clsizecoslam: '../inputs/ITSTPC_P_03_04_clSizeCosLam.root'
+
 outdir: '../plots/'
 outformat: ['pdf']
