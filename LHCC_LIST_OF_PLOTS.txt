@@ -2,11 +2,11 @@ LHCC LIST OF PLOTS:
 
     BDT 
     - beta vs p MC (X)
-    - Mean CL size vs p data
-    - Mean CL size projection in 0.3-0.4 data
+    - Mean CL size vs p data (x)
+    - Mean CL size projection in 0.3-0.4 data (x)
     - Dalitz Plot (X)
     
     BIG CL STUDY
     - CL size data vs MC 
     - Big CL origin (X)
-    - drays energy spectrum
+    - drays energy spectrum (x)
