@@ -1,0 +1,8 @@
+ITS2 cluster size study and PID capability
+
+The excellent pointing and momentum resolution of the ITS2 detector, which is crucial to reconstruct the decay-vertex position and providing tracking information at the analysis level, relies on its capability to collect a sufficient number and a precise topology of clusters in the detector.
+A detailed study of the cluster size distribution in the ITS2 detector is shown in this contribution.
+
+The cluster size distribution is studied in the ITS2 using the data collected at the beginning of Run 3. An inconsistency between the cluster size distribution in the data and MC simulations, especially for large clusters, is observed. The data-to-MC discrepancy is investigated, and the latest conclusions are presented. 
+
+Finally, the PID capability of the ITS2 detector is discussed. Cluster topologies are interpreted as a proxy for the energy loss by charged particles traversing the ITS2. Together with the reconstructed momentum of the particle and its angular distribution, this information can help to identify the particle specie producing the signal. The ITS2 PID capabilities on MC simulation and data are presented for the first time. 
