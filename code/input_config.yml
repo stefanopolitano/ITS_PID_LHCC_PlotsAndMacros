@@ -7,6 +7,10 @@ big_cluster_origin_mc:
   drays_input: '../inputs/MCOriginStudy0208_EkinFix.root'
 
 clsizecoslam: '../inputs/ITSTPC_P_03_04_clSizeCosLam.root'
+bigcluster:
+  data: '../inputs/outFileClSizeJuneNewMaskData.root'
+  mc: '../inputs/MCOriginStudyPROVAMOct_L0.root'
+  layer: '' # L0 by default
 
 outdir: '../plots/'
 outformat: ['pdf']
