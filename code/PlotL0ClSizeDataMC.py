@@ -66,7 +66,7 @@ hFrame = cCLSize.cd().DrawFrame(0.,
                                 10,
                                 f";cluster size on {layer}; norm. counts")
 hFrame.GetYaxis().SetDecimals()
-LatLabel('This Analyses', 0.52, 0.88, 0.05)
+LatLabel('This Analysis', 0.52, 0.88, 0.05)
 LatLabel('Run 3', 0.52, 0.83, 0.05)
 LatLabel('pp, #sqrt{#it{s}} = 900 GeV', 0.52, 0.78, 0.03)
 hData.DrawCopy('samehiste')

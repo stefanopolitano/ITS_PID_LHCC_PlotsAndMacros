@@ -61,8 +61,10 @@ for _, histo_name in enumerate(histoName):
     histos_ratio.append(histos[-1].Clone(f'{histo_name}_ratio'))
     histos_ratio[-1].Divide(histos[0])
 
-cBeta = TCanvas('cBeta', '', 1200, 400)
-pads = 3 if inputCfg['big_cluster_origin_mc']['drays_energy'] else 2
+do_drays_energy = inputCfg['big_cluster_origin_mc']['drays_energy']
+pads = 3 if do_drays_energy else 2
+xcanvas = 1200 if do_drays_energy else 800
+cBeta = TCanvas('cBeta', '', xcanvas, 400)
 cBeta.Divide(pads, 1)
 
 for pad in range(1, pads+1):
@@ -81,7 +83,7 @@ for pad in range(1, pads+1):
                 histo.Draw('histesame')
             else:
                 histo.Draw('histesame')
-        LatLabel('This Analyses', 0.25, 0.85, 0.05)
+        LatLabel('This Analysis', 0.25, 0.85, 0.05)
         LatLabel('Run 3 MC', 0.25, 0.8, 0.05)
         LatLabel('pp, #sqrt{#it{s}} = 900 GeV', 0.25, 0.75, 0.05)
         legend.Draw()

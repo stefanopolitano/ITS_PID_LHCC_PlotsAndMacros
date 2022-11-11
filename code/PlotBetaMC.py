@@ -47,7 +47,7 @@ for infile in inFiles:
     hFrame.GetZaxis().SetDecimals()
     hbeta_vs_mc.Draw('samecolz')
     #latALICE = LatLabel('ALICE', 0.6, 0.24, 0.04) # wait for approval
-    latALICE = LatLabel('This Analyses', latexLabels[infile][0],
+    latALICE = LatLabel('This Analysis', latexLabels[infile][0],
                         latexLabels[infile][1], 0.05)
     run_label = 'Run 3 MC' if infile == 'beta_MC' else 'Run 3'
     latSystem = LatLabel(f'{run_label}', latexLabels[infile][0],

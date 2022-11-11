@@ -3,7 +3,7 @@ beta_MC: '../inputs/TH2_beta_vs_p_MC_PESI.root'
 armenteros: '../inputs/test_v0_builder_520143_armenteros.root'
 big_cluster_origin_mc:
   input: '../inputs/BigClusterOriginMC.root'
-  drays_energy: True # plot d-rays energy spectrum
+  drays_energy: False # plot d-rays energy spectrum
   drays_input: '../inputs/MCOriginStudy0208_EkinFix.root'
 
 clsizecoslam: '../inputs/ITSTPC_P_03_04_clSizeCosLam.root'
@@ -11,6 +11,7 @@ bigcluster:
   data: '../inputs/outFileClSizeJuneNewMaskData.root'
   mc: '../inputs/MCOriginStudyPROVAMOct_L0.root'
   layer: '' # L0 by default
+cluster_splitting: '../inputs/h_proton_clus_520143.root'
 
 outdir: '../plots/'
 outformat: ['pdf']

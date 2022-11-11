@@ -56,7 +56,7 @@ hFrame = cCLSize.cd().DrawFrame(0.,
                                 0.1,
                                 "; #LT cluster size #GT #times cos#lambda; norm. counts")
 hFrame.GetYaxis().SetDecimals()
-LatLabel('This Analyses', 0.58, 0.88, 0.05)
+LatLabel('This Analysis', 0.58, 0.88, 0.05)
 LatLabel('Run 3', 0.58, 0.83, 0.05)
 LatLabel('pp, #sqrt{#it{s}} = 13 TeV', 0.58, 0.78, 0.03)
 LatLabel('0.3 < #it{p}^{ITS-TPC} < 0.4 GeV/#it{c}', 0.55, 0.73, 0.03)
