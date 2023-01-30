@@ -849,7 +849,9 @@ def fit_reso(histo, xmin=-1, xmax=1, nsigma=3):
     xmax = histo.GetMean() + nsigma*histo.GetRMS() if xmax == 1 else xmax
     gaus = TF1(f'gaus_{histo.GetName()}_{xmin}_{xmax}', 'gaus', xmin, xmax)
     integral = histo.Integral(histo.FindBin(xmin), histo.FindBin(xmax))
-    gaus.SetParameters(0, histo.Integral(histo.FindBin(xmin), histo.FindBin(xmax)), histo.GetMean(), histo.GetRMS())
+    gaus.SetParameter(0, histo.Integral(histo.FindBin(xmin), histo.FindBin(xmax)))
+    gaus.SetParameter(1, histo.GetMean())
+    gaus.SetParameter(2, histo.GetRMS())
     gaus.SetLineWidth(3)
     linestyles = [2, 7, 9, 10]
     linecolors = [kBlack, kGray+1, kGray+2, kGray+3]
@@ -861,6 +863,6 @@ def fit_reso(histo, xmin=-1, xmax=1, nsigma=3):
     sigma = gaus.GetParameter(2)
     mean = gaus.GetParameter(1)
     reso = sigma/mean
-    reso_unc = gaus.GetParError(2)/mean
+    reso_unc = np.sqrt((gaus.GetParError(2)/mean)**2 + (sigma*gaus.GetParError(1)/(mean**2))**2)
 
     return reso, reso_unc, gaus

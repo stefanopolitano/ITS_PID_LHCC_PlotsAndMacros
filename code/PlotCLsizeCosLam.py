@@ -55,11 +55,11 @@ legend.AddEntry(hP, 'p', 'flp')
 # resolution fit (TO DO: move to flarefly)
 outfile_reso = TFile('../plots/Resolution.root', 'recreate')
 reso1, reso_unc1, gaus1 = fit_reso(hP, nsigma=1)
-gaus1.SetName('hPreso1')
+gaus1.SetName('fPreso1')
 reso2, reso_unc2, gaus2 = fit_reso(hP, nsigma=2)
-gaus2.SetName('hPreso2')
+gaus2.SetName('fPreso2')
 reso3, reso_unc3, gaus3 = fit_reso(hP, nsigma=3)
-gaus3.SetName('hPreso3')
+gaus3.SetName('fPreso3')
 print('\033\[1mResolution Proton\033\[0m')
 print(f'Resolution: {reso1} +- {reso_unc1}')
 print(f'Resolution: {reso2} +- {reso_unc2}')
@@ -70,9 +70,10 @@ hFrame = canv.cd().DrawFrame(hP.GetMean()-3.5*hP.GetRMS(),
                              0.0001,
                              hP.GetMean()+3.5*hP.GetRMS(),
                              500,
-                             "; #LT cluster size #GT #times cos#lambda; norm. counts")
+                             "; #LT cluster size #GT #times cos#lambda; counts")
 hP.Draw('hist same')
-leghp = TLegend(0.63, 0.4, 0.9, 0.7)
+LatLabel('Proton resolution', 0.2, 0.85, 0.05)
+leghp = TLegend(0.55, 0.6, 0.9, 0.85)
 gaus1.Draw('same')
 gaus2.Draw('same')
 gaus3.Draw('same')
@@ -89,11 +90,11 @@ gaus3.Write()
 input('Press enter to continue')
 
 reso1, reso_unc1, gaus1 = fit_reso(hK, nsigma=1)
-gaus1.SetName('hKreso1')
+gaus1.SetName('fKreso1')
 reso2, reso_unc2, gaus2 = fit_reso(hK, nsigma=2)
-gaus2.SetName('hKreso2')
+gaus2.SetName('fKreso2')
 reso3, reso_unc3, gaus3 = fit_reso(hK, nsigma=3)
-gaus3.SetName('hKreso3')
+gaus3.SetName('fKreso3')
 print('\033\[1mResolution Kaon\033\[0m')
 print(f'Resolution: {reso1} +- {reso_unc1}')
 print(f'Resolution: {reso2} +- {reso_unc2}')
@@ -105,9 +106,10 @@ hFrame = canv.cd().DrawFrame(hK.GetMean()-3.5*hK.GetRMS(),
                              0.0001,
                              hK.GetMean()+3.5*hK.GetRMS(),
                              ymax,
-                             "; #LT cluster size #GT #times cos#lambda; norm. counts")
+                             "; #LT cluster size #GT #times cos#lambda; counts")
 hK.Draw('hist same')
-leghk = TLegend(0.63, 0.4, 0.9, 0.7)
+LatLabel('Kaon resolution', 0.2, 0.85, 0.05)
+leghk = TLegend(0.6, 0.6, 0.9, 0.85)
 gaus1.Draw('same')
 gaus2.Draw('same')
 gaus3.Draw('same')
@@ -141,9 +143,10 @@ hFrame = canv.cd().DrawFrame(hPi.GetMean()-3.5*hPi.GetRMS(),
                              0.0001,
                              hPi.GetMean()+3.5*hPi.GetRMS(),
                              ymax,
-                             "; #LT cluster size #GT #times cos#lambda; norm. counts")
+                             "; #LT cluster size #GT #times cos#lambda; counts")
 hPi.Draw('hist same')
-leghpi = TLegend(0.63, 0.4, 0.9, 0.7)
+LatLabel('Pion resolution', 0.2, 0.85, 0.05)
+leghpi = TLegend(0.6, 0.6, 0.9, 0.85)
 gaus1.Draw('same')
 gaus2.Draw('same')
 gaus3.Draw('same')
