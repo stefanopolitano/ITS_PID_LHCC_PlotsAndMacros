@@ -5,7 +5,7 @@ Script with miscellanea utils methods for the analysis
 import ctypes
 import numpy as np
 from ROOT import TH1F, TF1, TFile, TList, TGraph, TGraphErrors, TGraphAsymmErrors # pylint: disable=import-error,no-name-in-module
-from ROOT import kGreen, kAzure, kOrange, kMagenta, kGray # pylint: disable=import-error,no-name-in-module
+from ROOT import kGreen, kAzure, kOrange, kMagenta, kBlack, kGray # pylint: disable=import-error,no-name-in-module
 
 
 def MergeHists(listOfHists):
@@ -840,3 +840,27 @@ def CombineExtrapFactors(extrFact, extrFactAlt, strategy='none'):
                 extrFactFin['uncHighFONLL'] = varH
 
     return extrFactFin
+
+def fit_reso(histo, xmin=-1, xmax=1, nsigma=3):
+    '''
+    Method for the fit of the resolution of cluster peak
+    '''
+    xmin = histo.GetMean() - nsigma*histo.GetRMS() if xmin == -1 else xmin
+    xmax = histo.GetMean() + nsigma*histo.GetRMS() if xmax == 1 else xmax
+    gaus = TF1(f'gaus_{histo.GetName()}_{xmin}_{xmax}', 'gaus', xmin, xmax)
+    integral = histo.Integral(histo.FindBin(xmin), histo.FindBin(xmax))
+    gaus.SetParameters(0, histo.Integral(histo.FindBin(xmin), histo.FindBin(xmax)), histo.GetMean(), histo.GetRMS())
+    gaus.SetLineWidth(3)
+    linestyles = [2, 7, 9, 10]
+    linecolors = [kBlack, kGray+1, kGray+2, kGray+3]
+    lstyle = linestyles[nsigma-1]
+    linecolor = linecolors[nsigma-1]
+    gaus.SetLineStyle(lstyle)
+    gaus.SetLineColor(linecolor)
+    histo.Fit(gaus, 'RLME')
+    sigma = gaus.GetParameter(2)
+    mean = gaus.GetParameter(1)
+    reso = sigma/mean
+    reso_unc = gaus.GetParError(2)/mean
+
+    return reso, reso_unc, gaus
